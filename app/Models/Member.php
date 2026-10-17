@@ -9,8 +9,7 @@ class Member extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'nis_nim', 'no_hp'];
-
+protected $fillable = ['nama', 'nis_nim', 'no_hp', 'alamat'];
     public function loans()
     {
         return $this->hasMany(Loan::class);
