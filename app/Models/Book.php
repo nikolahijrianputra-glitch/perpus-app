@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
-
+    // Kolom yang boleh diisi lewat Book::create()
     protected $fillable = [
-        'kode_buku', 'judul', 'pengarang', 'penerbit', 'tahun', 'stok',
+        'kode_buku',
+        'judul',
+        'pengarang',
+        'penerbit',
+        'tahun',
+        'stok',
     ];
-
-    public function loans()
-    {
-        return $this->hasMany(Loan::class);
-    }
 }

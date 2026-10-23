@@ -8,14 +8,14 @@ use Inertia\Middleware;
 class HandleInertiaRequests extends Middleware
 {
     /**
-     * The root template that is loaded on the first page visit.
+     * Template root yang dimuat saat kunjungan pertama.
      *
      * @var string
      */
     protected $rootView = 'app';
 
     /**
-     * Determine the current asset version.
+     * Versi asset saat ini.
      */
     public function version(Request $request): ?string
     {
@@ -23,7 +23,7 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
-     * Define the props that are shared by default.
+     * Data yang otomatis dikirim ke SEMUA halaman Vue.
      *
      * @return array<string, mixed>
      */
@@ -33,6 +33,10 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            // Pesan flash (contoh: "Buku berhasil ditambahkan") dari ->with('success', ...)
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
             ],
         ];
     }
